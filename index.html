@@ -460,6 +460,13 @@
   </div>
 
   <div class="section">
+    <h2 class="section-title">🌙 Evening Duties</h2>
+    <div class="section-sub">Prepare for rest, brave knight.</div>
+    <div class="banner" id="eveningBanner">0 of 3 done</div>
+    <div class="chore-grid" id="eveningGrid"></div>
+  </div>
+
+  <div class="section">
     <h2 class="section-title">⚔️ Quests for Gold</h2>
     <div class="section-sub">Quests issued by the King & Queen (Mom & Dad). Each has its own reward.</div>
     <div class="banner" id="paidBanner">Finish your morning preparation first</div>
@@ -527,6 +534,41 @@
     { id: 'daytime-dishes',        name: 'Put away clean dishes',      icon: '🍽️' },
     { id: 'daytime-clear-dinner',  name: 'Clear dishes from dinner',   icon: '🍴' }
   ];
+
+  // Evening wind-down routine
+  const EVENING = [
+    { id: 'evening-brush',   name: 'Brush teeth', icon: '🪥' },
+    { id: 'evening-bath',    name: 'Bath time',   icon: '🛁' },
+    { id: 'evening-prayers', name: 'Prayers',     icon: '🙏' }
+  ];
+
+  // Keyword → icon mapping so dynamic quests get a meaningful picture
+  const ICON_KEYWORDS = [
+    ['put away dish','🍽️'],['clear dish','🍴'],['dinner dish','🍴'],['dishwasher','🍽️'],['dish','🍽️'],
+    ['set the table','🍽️'],['set table','🍽️'],['wipe table','🪑'],['table','🪑'],
+    ['vacuum','🧹'],['sweep','🧹'],['mop','🧹'],['dust','🪶'],
+    ['wipe','🧽'],['scrub','🧽'],['clean','🧼'],
+    ['playroom','🧸'],['toys','🧸'],['toy','🧸'],
+    ['toilet','🚽'],['bath','🛁'],['shower','🚿'],['sink','🚰'],
+    ['cook','🍳'],['kitchen','🍳'],['fridge','🧊'],
+    ['cupboard','🗄️'],['pantry','📦'],['island','🍽️'],
+    ['weed','🌱'],['lawn','🌿'],['grass','🌿'],['garden','🌻'],
+    ['leaves','🍂'],['leaf','🍂'],['water plant','💧'],
+    ['garage','🚗'],['backyard','🌳'],['front yard','🌳'],['yard','🌳'],
+    ['dog','🐕'],['cat','🐱'],['walk pet','🐾'],['feed pet','🦴'],['litter','🐈'],['pet','🐾'],
+    ['laundry','🧺'],['fold','🧺'],['sock','🧦'],['shirt','👕'],
+    ['bed','🛏️'],['pillow','🛏️'],['room','🚪'],
+    ['mail','📬'],['trash','🗑️'],['recycl','♻️'],
+    ['shoe','👟'],['organize','📦'],['tidy','🧺'],
+    ['hallway','🚪'],['window','🪟'],['mirror','🪞'],
+    ['car','🚗'],['piano','🎹'],['practice','🎵'],
+    ['homework','📚'],['read','📖'],['water','💧']
+  ];
+  function pickIcon(name, fallback) {
+    const lower = (name || '').toLowerCase();
+    for (const [kw, ic] of ICON_KEYWORDS) if (lower.includes(kw)) return ic;
+    return fallback;
+  }
 
   // Things Austin can buy with his earnings. Tap → parent approval → deducted from scooter fund.
   const REWARDS = [
@@ -629,6 +671,7 @@
   function renderRoutines() {
     MORNING.forEach(c => renderRoutineChore(c, 'morningGrid'));
     DAYTIME.forEach(c => renderRoutineChore(c, 'daytimeGrid'));
+    EVENING.forEach(c => renderRoutineChore(c, 'eveningGrid'));
   }
 
   function renderRewards() {
@@ -675,7 +718,7 @@
       div.dataset.menuId = m.id;
       const price = (m.price_cents / 100).toFixed(2);
       div.innerHTML = `
-        <div class="chore-check">⚔️</div>
+        <div class="chore-check">${pickIcon(m.name, '⚔️')}</div>
         <div class="chore-body">
           <div class="chore-name">${m.name}</div>
           <div class="chore-meta">Royal quest</div>
@@ -729,6 +772,17 @@
       const el = document.querySelector(`#daytimeGrid .chore[data-id="${c.id}"]`);
       if (el) el.classList.toggle('done', todayRoutine.some(r => r.chore_id === c.id));
     });
+    EVENING.forEach(c => {
+      const el = document.querySelector(`#eveningGrid .chore[data-id="${c.id}"]`);
+      if (el) el.classList.toggle('done', todayRoutine.some(r => r.chore_id === c.id));
+    });
+    const eveningCount = EVENING.filter(c => todayRoutine.some(r => r.chore_id === c.id)).length;
+    const eveningDone  = eveningCount === EVENING.length;
+    const eb = document.getElementById('eveningBanner');
+    eb.className = 'banner' + (eveningDone ? ' complete' : '');
+    eb.textContent = eveningDone
+      ? '🌙 Evening duties complete! Rest well, Sir Austin.'
+      : `${eveningCount} of ${EVENING.length} done`;
 
     const mb = document.getElementById('morningBanner');
     if (morningApproved) {
