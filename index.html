@@ -176,9 +176,9 @@
     padding: 14px 16px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
     cursor: pointer;
-    min-height: 72px;
+    min-height: 88px;
     transition: all 0.2s ease;
   }
   .chore:active { transform: scale(0.97); }
@@ -190,33 +190,49 @@
     background: linear-gradient(90deg, #fff1c2, #ffe2a8);
     border-color: var(--gold);
   }
-  .chore.pending .chore-check {
-    background: var(--gold);
-    border-color: var(--gold);
-  }
-  .chore.pending .chore-check::before {
-    content: '⏳';
-    font-size: 18px;
-  }
-  .chore.pending .chore-check img,
-  .chore.pending .chore-check > :not(::before) { display: none; }
   .chore.locked { opacity: 0.4; pointer-events: none; }
+  /* Big visual icon — always visible, helps pre-readers identify chores */
   .chore-check {
-    width: 36px;
-    height: 36px;
-    border-radius: 6px;
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
     background: white;
-    border: 2px solid var(--sapphire);
+    border: 3px solid var(--sapphire);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 22px;
+    font-size: 36px;
     flex-shrink: 0;
+    position: relative;
   }
-  .chore.done .chore-check {
-    background: var(--good);
-    border-color: var(--good);
+  /* Status badge — small corner mark, doesn't cover the icon */
+  .chore.done .chore-check::after,
+  .chore.pending .chore-check::after {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 800;
     color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    line-height: 1;
+  }
+  .chore.done .chore-check::after {
+    content: '✓';
+    background: var(--good);
+    border: 2px solid white;
+  }
+  .chore.pending .chore-check::after {
+    content: '⏳';
+    background: var(--gold);
+    border: 2px solid white;
+    font-size: 12px;
   }
   .chore-body { flex: 1; min-width: 0; }
   .chore-name { font-weight: 700; font-size: 15px; line-height: 1.2; }
@@ -352,8 +368,8 @@
     overflow: hidden;
     background: white;
     border-width: 3px;
-    width: 42px;
-    height: 42px;
+    width: 60px;
+    height: 60px;
   }
   .chore-check.with-photo img {
     width: 100%;
@@ -476,11 +492,12 @@
 
   // Austin's daytime duties (two dogs to care for)
   const DAYTIME = [
-    { id: 'daytime-lunch',      name: 'Eat lunch',                  icon: '🍎' },
-    { id: 'daytime-walk-spot',  name: 'Walk Spot (15 min)',         photo: './photos/spot-2.jpg' },
-    { id: 'daytime-walk-pedro', name: 'Walk Pedro (15 min)',        photo: './photos/pedro-3.jpg' },
-    { id: 'daytime-feed-spot',  name: 'Feed Spot',                  photo: './photos/spot-1.jpg' },
-    { id: 'daytime-dishes',     name: 'Put away clean dishes',      icon: '🍽️' }
+    { id: 'daytime-lunch',         name: 'Eat lunch',                  icon: '🍎' },
+    { id: 'daytime-walk-spot',     name: 'Walk Spot (15 min)',         photo: './photos/spot-2.jpg' },
+    { id: 'daytime-walk-pedro',    name: 'Walk Pedro (15 min)',        photo: './photos/pedro-3.jpg' },
+    { id: 'daytime-feed-spot',     name: 'Feed Spot',                  photo: './photos/spot-1.jpg' },
+    { id: 'daytime-dishes',        name: 'Put away clean dishes',      icon: '🍽️' },
+    { id: 'daytime-clear-dinner',  name: 'Clear dishes from dinner',   icon: '🍴' }
   ];
 
   const PET_PHOTOS_SPOT  = ['./photos/spot-1.jpg', './photos/spot-2.jpg', './photos/spot-3.jpg', './photos/spot-4.jpg'];
