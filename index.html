@@ -247,9 +247,17 @@
   /* Reward tiles — same layout but signal "spend" with treasury gold */
   .chore.reward {
     background: linear-gradient(135deg, #fff4d6, #ffe7a8);
+    position: relative;
+    padding-bottom: 22px;
   }
   .chore.reward .chore-check { border-color: var(--gold); }
   .chore.reward .chore-price {
+    position: absolute;
+    bottom: 6px;
+    right: 12px;
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
     color: #b58509;
   }
   .chore.reward .chore-price::before { content: '−'; }
