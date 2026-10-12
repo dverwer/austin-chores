@@ -3,29 +3,26 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-<title>Austin's Chores ⭐</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+<title>Austin — Mission Control 🚀</title>
 <style>
   :root{
-    --bg:#fff7e6; --card:#ffffff; --blue:#2f7df6; --blue-dark:#1b4fa0;
-    --gold:#ffb703; --green:#2ec76f; --pink:#ff6b9d; --ink:#21304a; --muted:#7a879c;
-    --shadow:0 8px 24px rgba(33,48,74,.12); --radius:28px;
+    --bg:#0c1124; --card:#1a2142; --blue:#38bdf8; --blue-dark:#0369a1;
+    --gold:#fbbf24; --green:#4ade80; --pink:#fb7185; --ink:#eef2ff; --muted:#93a3cc;
+    --shadow:0 8px 24px rgba(0,0,0,.45); --radius:28px;
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   html,body{margin:0;padding:0}
-  body{font-family:'Fredoka',system-ui,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;padding:16px 14px 32px;user-select:none}
+  body{font-family:'Trebuchet MS',Verdana,system-ui,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;padding:16px 14px 32px;user-select:none}
   .wrap{max-width:760px;margin:0 auto}
 
   /* Header */
   header{text-align:center;padding:10px 0 4px}
   .dogs{display:flex;justify-content:center;gap:10px;margin-bottom:6px}
-  .dogs img{width:74px;height:74px;border-radius:50%;object-fit:cover;border:4px solid #fff;box-shadow:var(--shadow)}
-  h1{font-size:44px;font-weight:700;margin:0;line-height:1.05}
+  .dogs img{width:74px;height:74px;border-radius:50%;object-fit:cover;border:4px solid var(--gold);box-shadow:var(--shadow)}
+  h1{font-size:44px;font-weight:700;margin:0;line-height:1.05;letter-spacing:2px}
   .hi-sub{font-size:20px;color:var(--muted);font-weight:600;margin-top:4px}
 
-  .stars{text-align:center;font-size:22px;font-weight:700;color:#d18d00;background:var(--card);border-radius:999px;box-shadow:var(--shadow);padding:12px 18px;margin:16px auto 6px;max-width:340px}
+  .stars{text-align:center;font-size:22px;font-weight:700;color:var(--gold);background:var(--card);border-radius:999px;box-shadow:var(--shadow);padding:12px 18px;margin:16px auto 6px;max-width:340px}
 
   /* Sections */
   h2{font-size:32px;font-weight:700;margin:26px 4px 4px}
@@ -35,15 +32,21 @@
   @media(min-width:560px){.grid{grid-template-columns:repeat(3,1fr)}}
 
   /* Big tap tiles */
-  .tile{border:4px solid #e8eef7;background:var(--card);border-radius:24px;min-height:132px;padding:14px 8px 12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;font-family:inherit;width:100%;position:relative;transition:transform .15s ease,background .2s}
+  .tile{border:4px solid #2b3a67;background:var(--card);border-radius:24px;min-height:132px;padding:14px 8px 12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;font-family:inherit;width:100%;position:relative;transition:transform .15s ease,background .2s}
   .tile:active{transform:scale(.96)}
   .tile .pic{font-size:62px;line-height:1}
   .tile .pic img{width:62px;height:62px;border-radius:50%;object-fit:cover;display:block}
   .tile .name{font-size:21px;font-weight:600;line-height:1.15;text-align:center}
-  .tile.done{background:#d9f7e6;border-color:var(--green)}
+  .tile.done{background:#14532d;border-color:var(--green)}
   .tile.done::after{content:'✓';position:absolute;top:8px;right:8px;width:34px;height:34px;border-radius:50%;background:var(--green);color:#fff;font-size:22px;font-weight:700;display:flex;align-items:center;justify-content:center}
 
-  .big-banner{display:none;background:#d9f7e6;border:4px solid var(--green);color:#146c39;border-radius:24px;padding:18px;text-align:center;font-size:26px;font-weight:700;margin:14px 0}
+  .rank{background:var(--card);border:3px solid #2b3a67;border-radius:24px;box-shadow:var(--shadow);padding:14px 18px;margin:10px auto 2px;max-width:520px;text-align:center}
+  .rank .rname{font-size:27px;font-weight:700;letter-spacing:2px;color:var(--blue)}
+  .rank .rstats{font-size:18px;font-weight:600;color:var(--ink);margin-top:2px}
+  .rank .bar{height:16px;background:#0c1124;border-radius:999px;margin-top:10px;overflow:hidden;border:2px solid #2b3a67}
+  .rank .bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--green));border-radius:999px;transition:width .5s}
+  .rank .rnext{font-size:14px;color:var(--muted);font-weight:600;margin-top:6px}
+  .big-banner{display:none;background:#14532d;border:4px solid var(--green);color:#bbf7d0;border-radius:24px;padding:18px;text-align:center;font-size:26px;font-weight:700;margin:14px 0}
   .big-banner.show{display:block}
 
   .footer{text-align:center;color:var(--muted);font-size:14px;font-weight:600;padding:22px 0 4px}
@@ -61,21 +64,22 @@
 
   <header>
     <div class="dogs"><img id="pet1" alt="Spot"><img id="pet2" alt="Pedro"></div>
-    <h1>Hi Austin! 👋</h1>
-    <div class="hi-sub">Tap a picture when you're done!</div>
+    <h1>AGENT AUSTIN 🚀</h1>
+    <div class="hi-sub">MISSION CONTROL · Tap a mission when it's done!</div>
   </header>
 
-  <div class="stars" id="todayStars">⭐ 0 jobs done today</div>
+  <div class="stars" id="todayStars">⚡ 0 missions done today</div>
+  <div class="rank" id="rankCard"></div>
 
-  <h2>☀️ Today</h2>
-  <p class="hint">Do these every day.</p>
-  <div class="big-banner" id="allDone">🎉 You did everything today! Great job, Austin! 🎉</div>
+  <h2>🎯 TODAY'S MISSIONS</h2>
+  <p class="hint">Your daily missions. Finish them all, Agent!</p>
+  <div class="big-banner" id="allDone">🏆 ALL MISSIONS COMPLETE! Way to go, Agent Austin! 🏆</div>
 
-  <div class="group">🌅 Morning</div>
+  <div class="group">🌅 MORNING OPS</div>
   <div class="grid" id="morningGrid"></div>
-  <div class="group">🌞 Day</div>
+  <div class="group">☀️ DAY OPS</div>
   <div class="grid" id="daytimeGrid"></div>
-  <div class="group">🌙 Night</div>
+  <div class="group">🌙 NIGHT OPS</div>
   <div class="grid" id="eveningGrid"></div>
 
   <div class="footer"><span class="dot" id="dot"></span><span id="sync">Loading…</span></div>
@@ -128,13 +132,57 @@
   async function sbPost(p,b){ const r=await fetch(SB+'/'+p,{method:'POST',headers:{...AUTH,'Content-Type':'application/json',Prefer:'return=representation'},body:JSON.stringify(b)}); if(!r.ok) throw new Error(r.status); const d=await r.json(); return Array.isArray(d)?d[0]:d; }
   async function sbDelete(p){ const r=await fetch(SB+'/'+p,{method:'DELETE',headers:AUTH}); if(!r.ok) throw new Error(r.status); }
 
+  // ===== Offline-first layer: taps ALWAYS work on this screen; changes sync when the cloud answers =====
+  const LS_KEY='austin-chart-v2';
+  let store=(function(){ try{ return JSON.parse(localStorage.getItem(LS_KEY))||null; }catch(e){ return null; } })() || {rows:[],outbox:[],deleted:[]};
+  let cloudUp=false;
+  function saveStore(){ try{ localStorage.setItem(LS_KEY,JSON.stringify(store)); }catch(e){} }
+  function pendingCount(){ return store.outbox.length+store.deleted.length; }
+  function syncUI(){ setSync(cloudUp&&!pendingCount(), cloudUp ? (pendingCount()? 'Saving…' : 'All saved ✓') : (pendingCount()? 'Offline — saved here, will send ('+pendingCount()+')' : 'Offline — saved on this screen')); }
+  function applyRows(){ allLog=store.rows.slice(); todayLog=allLog.filter(r=>r.log_date===todayKey); refreshUI(); }
+  async function postLog(body){
+    const localId='local-'+Date.now()+'-'+Math.floor(Math.random()*1e6);
+    const row=Object.assign({},body,{id:localId,completed_at:new Date().toISOString()});
+    store.outbox.push({localId:localId,body:body}); store.rows.push(row); saveStore(); applyRows(); syncNow();
+    return row;
+  }
+  async function deleteLog(row){
+    if(String(row.id).indexOf('local-')===0){ store.outbox=store.outbox.filter(o=>o.localId!==row.id); }
+    else if(store.deleted.indexOf(row.id)<0){ store.deleted.push(row.id); }
+    store.rows=store.rows.filter(r=>r.id!==row.id); saveStore(); applyRows(); syncNow();
+  }
+  async function syncNow(){
+    if(syncNow._busy) return; syncNow._busy=true;
+    try{
+      if(store.outbox.length || store.deleted.length){
+        const fresh0=await sbGet('chore_log?select=*&kid=eq.'+CONFIG.kid+'&order=completed_at.asc');
+        for(const op of store.outbox.slice()){
+          const dupe=fresh0.find(r=>r.log_date===op.body.log_date && r.chore_id===op.body.chore_id && !!r.is_baseline===!!op.body.is_baseline && (r.price_cents||null)===(op.body.price_cents||null));
+          const row=dupe || await sbPost('chore_log',op.body);
+          store.rows=store.rows.map(r=>r.id===op.localId?row:r);
+          store.outbox=store.outbox.filter(o=>o.localId!==op.localId);
+        }
+        for(const id of store.deleted.slice()){
+          await sbDelete('chore_log?id=eq.'+id);
+          store.deleted=store.deleted.filter(x=>x!==id);
+        }
+        saveStore();
+      }
+      const fresh=await sbGet('chore_log?select=*&kid=eq.'+CONFIG.kid+'&order=completed_at.asc');
+      const pendIds={}; store.outbox.forEach(o=>pendIds[o.localId]=1);
+      store.rows=fresh.filter(r=>store.deleted.indexOf(r.id)<0).concat(store.rows.filter(r=>pendIds[r.id]));
+      saveStore(); cloudUp=true;
+    }catch(e){ cloudUp=false; }
+    syncNow._busy=false; applyRows(); syncUI();
+  }
+
   // Day rolls over at 10pm (unchanged)
   function isoDate(d){ const s=new Date(d.getTime()+2*3600*1000); return s.getFullYear()+'-'+String(s.getMonth()+1).padStart(2,'0')+'-'+String(s.getDate()).padStart(2,'0'); }
 
   let todayKey = isoDate(new Date()), todayLog=[], allLog=[], ready=false;
 
   function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove('show'),1900); }
-  function burst(x,y){ ['⭐','🎉','💙'].forEach((e,i)=>{ const s=document.createElement('span'); s.className='burst'; s.textContent=e; s.style.left=(x-16+i*30)+'px'; s.style.top=(y-20)+'px'; document.body.appendChild(s); setTimeout(()=>s.remove(),1000); }); }
+  function burst(x,y){ ['⚡','🎉','🚀'].forEach((e,i)=>{ const s=document.createElement('span'); s.className='burst'; s.textContent=e; s.style.left=(x-16+i*30)+'px'; s.style.top=(y-20)+'px'; document.body.appendChild(s); setTimeout(()=>s.remove(),1000); }); }
   function setSync(ok,txt){ document.getElementById('dot').classList.toggle('off',!ok); document.getElementById('sync').textContent=txt; }
 
   function tile(picHTML,name){
@@ -157,29 +205,38 @@
     document.getElementById('allDone').classList.toggle('show', doneCount===ALL_ROUTINES.length);
 
     const jobsToday = doneCount;
-    document.getElementById('todayStars').textContent = '⭐ '+jobsToday+(jobsToday===1?' job':' jobs')+' done today';
+    document.getElementById('todayStars').textContent = '⚡ '+jobsToday+' / '+ALL_ROUTINES.length+' missions done today';
+    renderRank();
+  }
+  const RANKS=[[0,'CADET'],[25,'AGENT'],[75,'SUPER AGENT'],[150,'ELITE AGENT'],[300,'MASTER AGENT'],[600,'LEGEND']];
+  function fmtDay(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+  function renderRank(){
+    const el=document.getElementById('rankCard'); if(!el) return;
+    const total=allLog.length;
+    let rank=RANKS[0], next=null;
+    for(let i=0;i<RANKS.length;i++){ if(total>=RANKS[i][0]){ rank=RANKS[i]; next=RANKS[i+1]||null; } }
+    const days={}; allLog.forEach(r=>{ days[r.log_date]=1; });
+    let streak=0; const now=new Date(); let cur=fmtDay(now);
+    if(!days[cur]){ cur=fmtDay(new Date(now.getTime()-86400000)); }
+    while(days[cur]){ streak++; const p=new Date(cur+'T12:00:00'); p.setDate(p.getDate()-1); cur=fmtDay(p); }
+    let bar='', nextTxt='MAX RANK — LEGEND STATUS! 🏆';
+    if(next){ const span=next[0]-rank[0], into=total-rank[0]; bar='<div class="bar"><i style="width:'+Math.round(into/span*100)+'%"></i></div>'; nextTxt=(next[0]-total)+' XP to '+next[1]; }
+    el.innerHTML='<div class="rname">🎖️ RANK: '+rank[1]+'</div><div class="rstats">⚡ '+total+' XP all time · 🔥 '+streak+'-day streak</div>'+bar+'<div class="rnext">'+nextTxt+'</div>';
   }
 
   async function toggleRoutine(c,ev){
-    if(!ready){ toast('One second… ⏳'); return; }
     const ex=todayLog.find(r=>r.chore_id===c.id && r.is_baseline);
-    try{
-      if(ex){ await sbDelete('chore_log?id=eq.'+ex.id); todayLog=todayLog.filter(r=>r.id!==ex.id); allLog=allLog.filter(r=>r.id!==ex.id); toast('Okay, undone'); }
-      else{ const d=await sbPost('chore_log',{kid:CONFIG.kid,log_date:todayKey,chore_id:c.id,chore_name:c.name,is_baseline:true,minutes:0}); todayLog.push(d); allLog.push(d); toast('Great job! ⭐'); if(ev) burst(ev.clientX,ev.clientY); }
-    }catch(e){ toast('Oops — try again 😢'); return; }
+    if(ex){ await deleteLog(ex); toast('Okay, undone'); }
+    else{ await postLog({kid:CONFIG.kid,log_date:todayKey,chore_id:c.id,chore_name:c.name,is_baseline:true,minutes:0}); toast('Mission done! ⚡'); if(ev) burst(ev.clientX,ev.clientY); }
     refreshUI();
   }
-  async function fetchAll(){
-    allLog = await sbGet('chore_log?select=*&kid=eq.'+CONFIG.kid+'&order=completed_at.asc');
-    todayLog = allLog.filter(r=>r.log_date===todayKey);
-  }
   async function init(){
-    try{
-      await fetchAll(); refreshUI(); ready=true; setSync(true,'All saved ✓');
-      setInterval(async()=>{ try{ await fetchAll(); refreshUI(); setSync(true,'All saved ✓'); }catch(e){ setSync(false,'Saving later…'); } },5000);
-    }catch(e){ setSync(false,'No internet — try again'); }
+    ready=true; applyRows(); syncUI();
+    syncNow();
+    setInterval(syncNow, 12000);
+    window.addEventListener('online', syncNow);
   }
-  setInterval(()=>{ const k=isoDate(new Date()); if(k!==todayKey){ todayKey=k; todayLog=allLog.filter(r=>r.log_date===todayKey); refreshUI(); } },60000);
+  setInterval(()=>{ const k=isoDate(new Date()); if(k!==todayKey){ todayKey=k; applyRows(); } },60000);
 
   document.getElementById('pet1').src = SPOT[Math.floor(Math.random()*SPOT.length)];
   document.getElementById('pet2').src = PEDRO[Math.floor(Math.random()*PEDRO.length)];
